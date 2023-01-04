@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool confusingNumber(int n) {
+        map<int, int> m;
+        m[1] = 1; m[0] = 0; m[6] = 9, m[8] = 8; m[9] = 6;
+        m[2] = INT_MAX; m[3] = INT_MAX; m[4] = INT_MAX; m[5] = INT_MAX; m[7] = INT_MAX;
+        int rotated = 0;
+
+        int copy = n;
+
+        while(copy)
+        {
+            int digit = copy % 10;
+            if(m[digit] == INT_MAX) return false;
+            rotated = rotated * 10 + m[digit];
+            copy /= 10;
+        }
+        
+        if(rotated == n) return false;
+        else return true;
+
+    }
+};
