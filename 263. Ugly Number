@@ -1,0 +1,23 @@
+class Solution {
+public:
+     void divide(int &n, int x)
+     {
+         while(n % x == 0)
+         {
+             n /= x;
+         }
+     }
+    bool isUgly(int n) {
+
+        vector<int> div = {2, 3, 5};
+        if(n == 0) return false;
+
+        for(auto x: div)
+        {
+            divide(n, x);
+        }
+        
+        return n == 1;
+        }
+
+};
