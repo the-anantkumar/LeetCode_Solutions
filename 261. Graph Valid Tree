@@ -1,0 +1,37 @@
+class Solution {
+public:
+    void dfs(long long int src, vector<bool>&vis, vector<vector<long long int>>&adj)
+    {
+        vis[src] = true;
+
+        for(auto x: adj[src])
+        {
+         if(!vis[x])
+          dfs(x, vis, adj);
+        }
+    }
+    bool validTree(int n, vector<vector<int>>& edges) {
+        vector<vector<long long int>>adj(n);
+
+        for(auto x: edges)
+        {
+            adj[x[0]].push_back(x[1]);
+            adj[x[1]].push_back(x[0]);
+        }
+
+        
+        vector<bool> vis(n, false);
+        dfs(0, vis, adj);
+        for(long long int i = 0; i < n ; i++)
+        {
+            if(!vis[i])
+            { 
+                return false;
+            }
+        }
+
+        if(edges.size() == n - 1) return true;
+        return false;
+        
+    }
+};
