@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxIceCream(vector<int>& costs, int coins) {
+        sort(costs.begin(), costs.end());
+        int answer = 0;
+        for(auto x: costs)
+        {
+            if(coins >= x) 
+            {
+                answer++;
+                coins -= x;
+            }
+        }
+
+        return answer;
+    }
+};
