@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> mergeSimilarItems(vector<vector<int>>& items1, vector<vector<int>>& items2) {
+        map<int, int> m;
+
+        for(auto x : items1) 
+        {
+            m[x[0]] += x[1];
+        }
+        for(auto x : items2) 
+        {
+            m[x[0]] += x[1];
+        }
+
+        vector<vector<int>>answer;
+
+        for(auto x: m)
+        {
+            if(x.second != 0)
+            {
+                answer.push_back({x.first, x.second});
+            }
+        }
+
+        return answer;
+
+        
+    }
+};
