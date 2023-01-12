@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+        map<int, int>m;
+        vector<int>a;
+
+        for(auto x: nums)
+        {   
+            m[x]++;
+            if(m[x] == 1)
+            a.push_back(x);
+        }
+       
+        sort(a.begin(), a.end());
+        
+        int length = 1, answer = 1;
+        for(int i = 1; i < a.size(); i++)
+        {
+            if(a[i] - a[i - 1] == 1)
+            {
+            length++;
+            answer = max(answer, length);
+            }
+            else length = 1;
+        }
+        return answer;
+        
+    }
+};
