@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<vector<pair<int, int>>> adj;
+    vector<bool> vis;
+    int answer = INT_MAX;
+
+    void dfs(int src)
+    {
+        vis[src] = true;
+
+        for(auto x: adj[src])
+        {
+            answer = min(answer, x.second);
+            if(!vis[x.first])
+            {
+                dfs(x.first);
+            }
+        }
+    }
+    int minScore(int n, vector<vector<int>>& roads) {
+        
+        adj.resize(n + 5);
+        vis.resize(n + 5, false);
+
+        for(auto x: roads)
+        {
+            adj[x[0]].push_back({x[1], x[2]});
+            adj[x[1]].push_back({x[0], x[2]});
+        }
+
+        dfs(1);
+        return answer;
+    }
+};
