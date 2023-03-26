@@ -1,0 +1,48 @@
+class Solution {
+public:
+    vector<vector<int>> adj;
+    vector<bool> vis;
+    long long countPairs(int n, vector<vector<int>>& edges) {
+    adj.resize(n + 5);
+    vis.resize(n + 5, false);
+    long long answer = 0;
+
+    for(auto x: edges)
+    {
+        adj[x[0]].push_back(x[1]);
+        adj[x[1]].push_back(x[0]);
+    }    
+
+    long long remaining = n;
+     for(int i = 0; i < n; i++)
+        {
+            queue<int>q;
+            
+            if(!vis[i])
+            {
+                int component = 0;
+                vis[i] = true;
+                q.push(i);
+                while(!q.empty())
+                {
+                  //  cout<<"endless\n";
+                    int front = q.front();
+                    q.pop();
+                    component++;
+                    for(auto x: adj[front])
+                    {
+                        if(!vis[x])
+                        {
+                        vis[x] = true;   
+                        q.push(x);
+                        }
+                    }
+                }
+                answer += component * (remaining - component);
+                remaining -= component;
+            }
+        }
+       
+        return answer;
+    }
+};
