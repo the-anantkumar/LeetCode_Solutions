@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void dfs(vector<vector<int>>& graph, vector<int> answer, vector<vector<int>> &final, int u )
+    {
+        int n = graph.size();
+        if(u == n - 1)
+        {
+           answer.push_back(n - 1);
+           final.push_back(answer);
+        }
+        
+     
+        answer.push_back(u);
+        for(auto x: graph[u])
+        {        
+               dfs(graph, answer, final, x);
+        }
+    }
+    
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        
+        vector<int>answer;
+        
+        int source = 0;
+        vector<vector<int>> final;
+        dfs(graph, answer, final, source);
+        
+        return final;
+        
+        
+    }
+};
