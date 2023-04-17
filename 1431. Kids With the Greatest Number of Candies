@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        vector<bool> answer;
+
+        int ref = *max_element(candies.begin(), candies.end());
+
+        for(auto x: candies)
+        {
+            int need = x + extraCandies;
+             answer.push_back(need >= ref);
+        }
+
+        return answer;
+    }
+};
