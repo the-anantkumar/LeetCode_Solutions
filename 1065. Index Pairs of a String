@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> indexPairs(string text, vector<string>& words) {
+        vector<vector<int>>answer;
+        set<string> s;
+        for(auto x: words) s.insert(x);
+        for(int i = 0; i < text.length(); i++)
+        {
+            int j = i;
+            while(j < text.length())
+            {
+                if(s.count(text.substr(i, j - i + 1)))
+                {
+                    answer.push_back({i, j});
+                }
+                j++;
+            }
+        }
+
+        return answer;
+    }
+};
