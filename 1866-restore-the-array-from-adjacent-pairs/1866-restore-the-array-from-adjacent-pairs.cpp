@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<int, vector<int>>adj;
+    unordered_map<int, vector<int>>adj;
     vector<int> answer;
     map<int, bool> vis;
 
@@ -32,7 +32,11 @@ public:
         int root = INT_MIN;
         for(auto x: adj)
         {
-            if(x.second.size() == 1) root = x.first;
+            if(x.second.size() == 1) 
+            {
+                root = x.first;
+                break;
+            }
         }
 
         dfs(root);
