@@ -26,8 +26,6 @@ public:
         {
             adj[x[0]].push_back(x[1]);
             adj[x[1]].push_back(x[0]);
-            vis[x[0]] = false;
-            vis[x[1]] = false;
         }
         int root = INT_MIN;
         for(auto x: adj)
